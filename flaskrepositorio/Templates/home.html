@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<h1> Disciplinas</h1>
+
+    {% for disciplina in disciplinas %}
+        <article class="media content-section">
+        	<div class="media-body">
+            	<h2><a class="article-title" href="{{ url_for('disciplina', disciplina_id=disciplina.id) }}">{{ disciplina.nome }}</a></h2>
+          	</div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}
