@@ -8,10 +8,6 @@
     <!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-
-
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" >
 
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='meu_estilo.css') }}" >
@@ -26,7 +22,7 @@
 	<header class="site-header">
 	    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 	        <div class="container">
-		        <a class="navbar-brand mr-4" href="/"><span class="fas fa-graduation-cap"></span> RMD</a>
+		        <a class="navbar-brand mr-4" href="/">Repositório Material de Disciplinas</a>
 		        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 		        	<span class="navbar-toggler-icon"></span>
 		        </button>
@@ -36,7 +32,7 @@
 		            <!-- Navbar Right Side -->
 		            <div class="navbar-nav">
 		            	{% if current_user.is_authenticated %}
-		            		<a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout &ensp;<span id="icone-sair" class="fas fa-sign-out-alt"></span></a>
+		            		<a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
 		            	{% else %}
 
 		            	{% endif %}
@@ -47,44 +43,18 @@
 	    </nav>
 	</header>
     <main role="main" class="container">
+
     	<div class="row">
-    		<div class="col-md-2"></div>
-    		<div class="col-md-5">
-    			<button type="button" class="formatacao-botao btn btn-default">Adicionar Fotos</button>
 
-    			<!-- Colocar uma condição para o botão, que ele só se ative quando tiver essa opcao -->
-
-    			{% if current_user.moderador %}
-    				<button type="button" class="formatacao-botao btn btn-default">Avaliar Submissões</button>
-    			{% endif %}
-    		</div>
     	</div>
-    	<div class="row">
-    		<div class="content-section col-md-2"
-    		     id = "raiz-arquivos">
-	        	<h2>Raiz de Arquivos</h2>
-	        </div>
-	        <div class="col-md-7">
-	        	<div id= "ver-arquivos" class="content-section">
-	        		<div id="nome-materia" class="content-section">
-	        			<!-- {{current_user.semestre}} -->
-	        			<h1>1° Semestre</h1>
-	        		</div>
-	        		{% block content %}{% endblock %}
-	        	</div>
-	        </div>
 
-	        <div class = "col-md-3">
-	        	<div class="content-section">
-		            <h3>Dúvidas</h3>
-		            <p class='text-muted'>Nos envie seu feedback
-						<div class="form-group">
-						  <label for="comment">Comentário:</label>
-						  <textarea class="form-control" rows="4" id="comment" maxlength="88" style="resize: none;"></textarea>
-						</div>
-  						<input type="submit" class="btn btn-info" value="Enviar">
-		            </p>
-	        	</div>
+    	<div class="row">
+    		<div class="col-md-3">
+	        </div>
+	        <div class="col-md-6">
+
+	        	{% block content %}{% endblock %}
+
 	        </div>
       	</div>
     </main>
