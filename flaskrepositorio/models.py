@@ -16,7 +16,7 @@ disciplina_identifier = db.Table('disciplina_identifier',
 class User(db.Model, UserMixin):
     __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True)
-    matricula = db.Column(db.Integer, unique=True, nullable=False)
+    matricula = db.Column(db.String(14), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
 
     def __repr__(self):
