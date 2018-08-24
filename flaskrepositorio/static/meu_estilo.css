@@ -1,0 +1,23 @@
+#raiz-arquivos{
+	height: 500px;
+}
+
+#ver-arquivos{
+	height: 500px;
+}
+
+.formatacao-botao{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#icone-sair{
+	color: white;
+}
+
+.formatacao-disciplina{
+	margin-left:30px;
+	text-align: center;
+	height: 200px;
+	float: left;
+}

@@ -1,14 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 
-	<h1> Disciplinas</h1>
-
     {% for disciplina in disciplinas %}
-        <article class="media content-section">
-        	<div class="media-body">
-            	<h2><a class="article-title" href="{{ url_for('disciplina', disciplina_id=disciplina.id) }}">{{ disciplina.nome }}</a></h2>
-          	</div>
-        </article>
+		<div class="formatacao-disciplina content-section col-md-5">
+			<h2><a class="href="{{ url_for('disciplina', disciplina_id=disciplina.id) }}"><span class="fas fa-book-open"></span><br>{{ disciplina.nome }}</a></h2>
+		</div>
     {% endfor %}
 
 {% endblock content %}
