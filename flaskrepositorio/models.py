@@ -43,6 +43,7 @@ class Subject(db.Model):
     subject_classes = db.relationship("SubjectClass", back_populates="subject")
     topics = db.relationship("Topic", back_populates="subject")
 
+
     def __repr__(self):
         return f"Subject('{self.name}', '{self.code}')"
 
