@@ -1,10 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    {% for disciplina in disciplinas %}
-		<div class="formatacao-disciplina content-section col-md-5">
-			<h2><a class="href="{{ url_for('disciplina', disciplina_id=disciplina.id) }}"><span class="fas fa-book-open"></span><br>{{ disciplina.nome }}</a></h2>
-		</div>
-    {% endfor %}
+	{% if conteudo %}
+
+	    {% for aula in aulas %}
+			<div class="formatacao-disciplina content-section col-md-5">
+				<h2><a class="href="{{ url_for('home', disciplina=aula.nome) }}"><span class="fas fa-book-open"></span><br>{{ aula.nome }}</a></h2>
+			</div>
+	    {% endfor %}
+
+
+	{% else %}
+
+	    {% for disciplina in disciplinas %}
+			<div class="formatacao-disciplina content-section col-md-5">
+				<h2><a href="{{ url_for('disciplina', disciplina=disciplina.nome) }}"><span class="fas fa-book-open"></span><br>{{ disciplina.nome }}</a></h2>
+			</div>
+	    {% endfor %}
+
+	{% endif %}
 
 {% endblock content %}
