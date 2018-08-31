@@ -1,0 +1,58 @@
+{
+	"Turmas": [ {
+		"308754": {
+			"disciplina" : {
+			  "codigo": "esse codigo e o mesmo da turma?",
+				"nome": "Analise e Projeto de Sistemas",
+				"curso": "Ciencia da Computacao"
+			},
+
+			"professor" : "matricula_shara?",
+			"semestre": "7 semestre"
+		},
+
+		"308756": {
+			"disciplina" : {
+			  "codigo": "esse codigo e o mesmo da turma?",
+				"nome": "Teoria da Computacao",
+				"curso": "Ciencia da Computacao"
+			},
+
+			"professor" : "matricula_gabriela?",
+			"semestre": "7 semestre"
+		},
+
+		"308762": {
+			"disciplina" : {
+			  "codigo": "esse codigo e o mesmo da turma?",
+				"nome": "Gestao de Projetos",
+				"curso": "Ciencia da Computacao"
+			},
+
+			"professor" : "matricula_Anderson?",
+			"semestre": "7 semestre"
+		},
+
+		"308767": {
+			"disciplina" : {
+			  "codigo": "esse codigo e o mesmo da turma?",
+				"nome": "Processamento Digital de Imagens",
+				"curso": "Ciencia da Computacao"
+			},
+
+			"professor" : "matricula_Nivando?",
+			"semestre": "7 semestre"
+		},
+
+		"308806": {
+			"disciplina" : {
+			  "codigo": "esse codigo e o mesmo da turma?",
+				"nome": "Trabalho de Conclusao do Curso",
+				"curso": "Ciencia da Computacao"
+			},
+
+			"professor" : "matricula_Anderson?",
+			"semestre": "7 semestre"
+		}
+	}]
+}

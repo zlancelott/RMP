@@ -3,9 +3,11 @@
 
 	<h1> {{title}}</h1>
 
-	{% for aula in aulas %}
+	{% for arquivo in arquivos %}
 		<div class="formatacao-disciplina content-section col-md-5">
-			<h2><a href="{{ url_for('aula', disciplina=title) }}"><span class="fas fa-book-open"></span><br>{{ aula }}</a></h2>
+			<a href="#"><img style="width=100px;height:150px " src={{arquivo}}></a>
+			</br>
+			imagem x
 		</div>
 	{% endfor %}
 

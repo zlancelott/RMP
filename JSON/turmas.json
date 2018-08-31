@@ -1,0 +1,93 @@
+{
+	"Turmas": [
+		{
+			"disciplina" : {
+			  "codigo": "308754",
+				"nome": "Analise e Projeto de Sistemas",
+				"curso": {
+				  "codigo": "190183092",
+				  "nome": "Ciencia da Computacao"
+				}
+			},
+
+			"professor" : {
+			  "id": "100001",
+			  "codigo": "39983092",
+			  "nome": "Shara Shami"
+			},
+			
+			"semestre": "7 semestre"
+		},
+
+		{
+			"disciplina" : {
+			  "codigo": "308756",
+				"nome": "Teoria da Computacao",
+				"curso": {
+				  "codigo": "190183092",
+				  "nome": "Ciencia da Computacao"
+				}
+			},
+
+			"professor" : {
+			  "id": "100002",
+			  "codigo": "38983092",
+			  "nome": "Gabriela"
+			},
+			"semestre": "7 semestre"
+		},
+
+		{
+			"disciplina" : {
+			  "codigo": "308762",
+				"nome": "Gestao de Projetos",
+				"curso": {
+				  "codigo": "190183092",
+				  "nome": "Ciencia da Computacao"
+				}
+			},
+
+			"professor" : {
+			  "id": "100003",
+			  "codigo": "40983010",
+			  "nome": "Anderson"
+			},
+			"semestre": "7 semestre"
+		},
+
+		{
+			"disciplina" : {
+			  "codigo": "308767",
+				"nome": "Processamento Digital de Imagens",
+				"curso": {
+				  "codigo": "190183092",
+				  "nome": "Ciencia da Computacao"
+				}
+			},
+
+			"professor" : {
+			  "id": "100004",
+			  "codigo": "39983092",
+			  "nome": "Nivando"
+			},
+			"semestre": "7 semestre"
+		},
+
+		{
+			"disciplina" : {
+			  "codigo": "308806",
+				"nome": "Trabalho de Conclusao do Curso",
+				"curso": {
+				  "codigo": "190183092",
+				  "nome": "Ciencia da Computacao"
+				}
+			},
+
+			"professor" : {
+			  "id": "100005",
+			  "codigo": "409890213",
+			  "nome": "Wellington"
+			},
+			"semestre": "7 semestre"
+		}]
+}
