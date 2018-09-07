@@ -5,7 +5,7 @@
 
 	{% for aula in aulas %}
 		<div class="formatacao-disciplina content-section col-md-5">
-			<h2><a href="{{ url_for('aula', disciplina=title) }}"><span class="fas fa-book-open"></span><br>{{ aula }}</a></h2>
+			<h2><a href="{{ url_for('aula', disciplina=title) }}"><span class="fas fa-book-open"></span><br>{{ aula.nome }}</a></h2>
 		</div>
 	{% endfor %}
 

@@ -66,10 +66,17 @@
 				<li>
 					<a href="#pageSubmenu{{ disciplina.id }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{ disciplina.nome }}</a>
 					<ul class="collapse list-unstyled" id="pageSubmenu{{ disciplina.id }}">
-						{% for arquivo in range(5) %}
-						<li>
-							<a href="#">Arquivo {{ arquivo }}</a>
-						</li>
+						{% for aula in aulas %}
+							<li>
+								<a href="#pageSubmenu{{ aula.id }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><strong>{{ aula.nome }}</strong></a>
+								<ul class="collapse list-unstyled" id="pageSubmenu{{ aula.id }}">
+									{% for arquivo in arquivos %}
+									<li>
+										<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp{{ arquivo.nome }}</a>
+									</li>
+									{% endfor %}
+								</ul>
+							</li>
 						{% endfor %}
 					</ul>
 				</li>
@@ -84,7 +91,6 @@
 						<div id="ver-arquivos" class="content-section">
 							<div id="nome-materia" class="content-section">
 								<!-- {{current_user.semestre}} -->
-								<h1>1° Semestre</h1>
 							</div>
 							{% block content %}{% endblock %}
 						</div>
