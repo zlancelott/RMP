@@ -17,9 +17,9 @@ class UserClassAssociation(db.Model):
 
 
 lesson_file_topic_table = db.Table('lesson_file_topic', db.Model.metadata,
-    db.Column('lesson_file_id', db.Integer, db.ForeignKey('lesson_file.id')),
-    db.Column('topic_id', db.Integer, db.ForeignKey('topic.id'))
-)
+                                   db.Column('lesson_file_id', db.Integer, db.ForeignKey('lesson_file.id')),
+                                   db.Column('topic_id', db.Integer, db.ForeignKey('topic.id'))
+                                   )
 
 
 class Course(db.Model):
@@ -42,7 +42,6 @@ class Subject(db.Model):
     course = db.relationship("Course", back_populates="subjects")
     subject_classes = db.relationship("SubjectClass", back_populates="subject")
     topics = db.relationship("Topic", back_populates="subject")
-
 
     def __repr__(self):
         return f"Subject('{self.name}', '{self.code}')"
