@@ -5,7 +5,7 @@
 
 	{% for arquivo in arquivos%}
 		<div class="formatacao-disciplina content-section col-md-5">
-			<a href="{{ url_for('vizualizando_imagem', disciplina=disciplina, nome_imagem=arquivo.nome) }}"><img style="width=100px;height:150px " src="{{url_for('uploaded_file', filename = '1.jpg')}}"></a>
+			<a href="{{ url_for('vizualizando_imagem', disciplina=disciplina, nome_imagem=arquivo.nome) }}"><img style="width=100px;height:150px " src="{{arquivo.endereco}}"></a>
 			</br>
 			{{arquivo.nome}}
 		</div>

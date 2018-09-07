@@ -4,6 +4,7 @@ from flaskrepositorio import app, db, bcrypt
 from flaskrepositorio.models import User, Subject
 from flask_login import login_user, current_user, login_required, logout_user
 from ftplib import FTP
+from flaskrepositorio.funcs import download_ftp_files, remove_files
 import urllib
 import os
 
@@ -69,23 +70,26 @@ def aula(disciplina):
     # Acessando as imagens da aula
     path = "/Computer Science/7-semester/%s/Aula 01/" % (disciplina)
     ftp.cwd(path)
+
     imagens = ftp.nlst()
 
-    print(imagens)
+    # Download das imagens
+    download_ftp_files()
 
-    ####### RESOLVER ##############
+    # Criando link para imagens da pasta static/cache
     nomes_arquivos = []
-
     arq = []
-
     for i in range(len(imagens)):
         nomes_arquivos.append(imagens[i])
-        imagens[i] = url_for('uploaded_file', filename="1.jpg")
+        imagens[i] = url_for('static', filename="cache/" + imagens[i])
         arq.append({})
         arq[i]['nome'] = nomes_arquivos[i]
         arq[i]['endereco'] = imagens[i]
 
     print(arq)
+
+    # Removendo imagens da pasta cache
+    remove_files()
 
     #############################
 
