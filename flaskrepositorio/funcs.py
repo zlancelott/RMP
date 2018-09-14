@@ -4,12 +4,14 @@ from ftplib import FTP
 
 def download_ftp_files():
 
-    ftp = FTP('177.19.73.31')
+    ftp = FTP('192.168.15.5')
     ftp.login(user='FTP_Server', passwd='ftpserver')
 
     ftp.cwd("/Computer Science/7-semester/Teoria da Computação/Aula 01/")
 
     filenames = ftp.nlst()
+
+    print("Aqui: ", filenames)
 
     for filename in filenames:
         # download the file

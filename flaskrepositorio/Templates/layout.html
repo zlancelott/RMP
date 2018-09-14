@@ -15,9 +15,16 @@
 
 
 
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='meu_estilo.css') }}"> {% if title %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/meu_estilo.css') }}">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/lightbox.min.css') }}">
+
+	<script src="{{ url_for('static', filename='js/lightbox-plus-jquery.min.js') }}"></script>
+
+	{% if title %}
 	<title> RMD - Repositório Material de Disciplinas - {{ title }} </title>
 	{% else %}
 	<title> RMD - Repositório Material de Disciplinas</title>
@@ -89,9 +96,6 @@
 				<div class="row">
 					<div class="col-md-9">
 						<div id="ver-arquivos" class="content-section">
-							<div id="nome-materia" class="content-section">
-								<!-- {{current_user.semestre}} -->
-							</div>
 							{% block content %}{% endblock %}
 						</div>
 					</div>
