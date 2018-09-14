@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
+
+<!--  -->
 	{% if conteudo %}
 
 	    {% for aula in aulas %}
@@ -13,7 +15,7 @@
 
 	    {% for disciplina in disciplinas %}
 			<div class="formatacao-disciplina content-section col-md-5">
-				<h2><a href="{{ url_for('disciplina', disciplina=disciplina.nome) }}"><span class="fas fa-book-open"></span><br>{{ disciplina.nome }}</a></h2>
+				<h2><a href="{{ url_for('disciplina', disciplina=disciplina.nome) }}"><span class="tam-livro fas fa-book-open"></span><br>{{ disciplina.nome }}</a></h2>
 			</div>
 	    {% endfor %}
 

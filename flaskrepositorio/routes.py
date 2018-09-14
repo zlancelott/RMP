@@ -13,7 +13,7 @@ from werkzeug.utils import secure_filename
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 # Conexão FTP
-ftp = FTP('177.19.73.31')
+ftp = FTP('192.168.15.5')
 ftp.login(user='FTP_Server', passwd='ftpserver')
 
 
@@ -114,7 +114,7 @@ def aula(disciplina):
     global disciplinas
 
     # Conexão FTP
-    ftp = FTP('177.19.73.31')
+    ftp = FTP('192.168.15.5')
     ftp.login(user='FTP_Server', passwd='ftpserver')
 
     # print("AULAAAAAAAAAAAAAAAAAAAAAAAAA")
@@ -152,15 +152,15 @@ def aula(disciplina):
 
     print(arq)
 
-    # Removendo imagens da pasta cache
-    remove_files()
+    # # Removendo imagens da pasta cache
+    # remove_files()
 
     #############################
 
     # disciplinas = [{"id": "12", "nome": "Teoria da Computação"}, {"id": "13", "nome": "Gestão de Projetos"},
     #                {"id": "14", "nome": "Trabalho de Conclusão"}, {"id": "15", "nome": "Processamento Digital de Imagens"}]
 
-    return render_template('arquivos.html', title="Aula 01", arquivos=arq, nomes_arquivos=nomes_arquivos, disciplina=disciplina, disciplinas=disciplinas, aulas=aulas)
+    return render_template('galeria.html', title="Aula 01", arquivos=arq, nomes_arquivos=nomes_arquivos, disciplina=disciplina, disciplinas=disciplinas, aulas=aulas)
 
 
 # Página que é aberta ao clicar em um arquivo
@@ -169,7 +169,7 @@ def vizualizando_imagem(disciplina, nome_imagem):
     global disciplinas
 
     # Conexão FTP
-    ftp = FTP('177.19.73.31')
+    ftp = FTP('192.168.15.5')
     ftp.login(user='FTP_Server', passwd='ftpserver')
 
     # print("AULAAAAAAAAAAAAAAAAAAAAAAAAA")
@@ -199,7 +199,7 @@ def vizualizando_imagem(disciplina, nome_imagem):
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return "ftp://FTP_Server:ftpserver@192.168.15.3/Computer%20Science/7-semester/Teoria%20da%20Computa%E7%E3o/Aula%2001/" + filename
+    return "ftp://FTP_Server:ftpserver@192.168.15.5/Computer%20Science/7-semester/Teoria%20da%20Computa%E7%E3o/Aula%2001/" + filename
 
 
 # Página que será aberta ao clicar em uma disciplina
@@ -208,7 +208,7 @@ def disciplina(disciplina):
     global disciplinas
 
     # Conexão FTP
-    ftp = FTP('177.19.73.31')
+    ftp = FTP('192.168.15.5')
     ftp.login(user='FTP_Server', passwd='ftpserver')
 
     # disciplinas = [{"id": "12", "nome": "Teoria da Computação"}, {"id": "13", "nome": "Gestão de Projetos"},
@@ -225,13 +225,14 @@ def disciplina(disciplina):
         aulas[j]["id"] = j
         aulas[j]["nome"] = lessons[j]
 
-    return render_template('disciplina.html', title=disciplina, aulas=aulas, disciplinas=disciplinas)
+    return render_template('aulas.html', title=disciplina, aulas=aulas, disciplinas=disciplinas)
 
 
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
 def home():
     global disciplinas
+
     #disciplinas = list(current_user.disciplinas)
     # disciplinas = [{"id": "12", "nome": "Teoria da Computação"}, {"id": "13", "nome": "Gestão de Projetos"},
     #                {"id": "14", "nome": "Trabalho de Conclusão"}, {"id": "15", "nome": "Processamento Digital de Imagens"}]
