@@ -1,0 +1,48 @@
+#raiz-arquivos{
+	height: 500px;
+}
+
+#ver-arquivos{
+	height: 1000px;
+}
+
+.formatacao-botao{
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#icone-sair{
+	color: white;
+}
+
+.formatacao-disciplina{
+	margin-left:30px;
+	text-align: center;
+	height: 200px;
+	float: left;
+}
+
+.galeria{
+	margin: 10px 50px;
+}
+
+.galeria img{
+	width: 270px;
+	height: 150px;
+	padding: 5px;
+	filter: grayscale(100%);
+	transition: 1s;
+}
+
+.galeria img:hover{
+	filter: grayscale(0);
+	transform: scale(1.1);
+}
+
+.tam-livro{
+	font-size: 100px;
+}
+
+.tam-livro2{
+	font-size: 50px;
+}
