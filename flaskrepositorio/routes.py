@@ -1,13 +1,16 @@
 from flask import render_template, url_for, redirect, flash, request
-from flaskrepositorio.forms import LoginForm
+from flaskrepositorio.forms import LoginForm, UploadFileForm
 from flaskrepositorio import app, db, bcrypt
-from flaskrepositorio.models import User, Subject
+from flaskrepositorio.models import User, Subject, SubjectClass, Topic, Lesson, LessonFile
 from flask_login import login_user, current_user, login_required, logout_user
 from ftplib import FTP
 from flaskrepositorio.funcs import download_ftp_files, remove_files
 import urllib
 import os
+from flask.json import jsonify
+from werkzeug.utils import secure_filename
 
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 # Conexão FTP
 ftp = FTP('177.19.73.31')
@@ -42,6 +45,67 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+
+@app.route("/lessons", methods=['GET'])
+@login_required
+def get_lessons_by_subject_class():
+    subject_class_id = request.args.get("subject_class_id")
+    lessons = Lesson.query.filter_by(subject_class_id=subject_class_id).all()
+    response = [{"id": lesson.id, "date": lesson.date} for lesson in lessons]
+    return jsonify(response)
+
+
+@app.route("/topics", methods=['GET'])
+@login_required
+def get_topics_by_subject():
+    subject_id = request.args.get("subject_id")
+    topics = Topic.query.filter_by(subject_id=subject_id).all()
+    reponse = [{"id": topic.id, "name": topic.name} for topic in topics]
+    return jsonify(reponse)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route("/files", methods=['GET', 'POST'])
+@login_required
+def upload_file():
+    form = UploadFileForm()
+    if request.method == 'GET':
+        subjects = SubjectClass.query.filter(User.subject_classes.any(User.id == current_user.id))
+        form.subject_class.choices = [(g.id, g.subject.name + " - " + g.semester) for g in subjects]
+        form.lesson.choices = [(l.id, l.date) for l in Lesson.query.filter_by(subject_class_id=subjects[0].id).all()]
+        form.topics.choices = [(t.id, t.name) for t in Topic.query.filter_by(subject_id=subjects[0].subject_id).all()]
+
+    if request.method == 'POST':
+        subjects = SubjectClass.query.filter(User.subject_classes.any(User.id == current_user.id))
+        form.subject_class.choices = [(g.id, g.subject.name + " - " + g.semester) for g in subjects]
+        form.lesson.choices = [(l.id, l.date) for l in Lesson.query.filter_by(subject_class_id=form.subject_class.data).all()]
+        subject = Subject.query.filter_by(id=form.subject_class.data).first()
+        form.topics.choices = [(t.id, t.name) for t in Topic.query.filter_by(subject_id=subject.id).all()]
+        if 'fileUpload' not in request.files:
+            flash('No file part', 'danger')
+        else:
+            fileUploaded = request.files['fileUpload']
+            if fileUploaded.filename == '':
+                flash('No selected file', 'danger')
+            else:
+                if form.validate_on_submit():
+                    filename = secure_filename(fileUploaded.filename)
+                    fileUploaded.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    lesson_file = LessonFile()
+                    lesson_file.name = filename
+                    lesson_file.lesson = Lesson.query.filter_by(id=form.lesson.data).first()
+                    lesson_file.topics.append(Topic.query.filter_by(id=form.topics.data[0]).first())
+                    lesson_file.author = current_user
+                    db.session.add(lesson_file)
+                    db.session.commit()
+                    return redirect(url_for('home'))
+
+    return render_template('submeter_arquivo.html', form=form)
 
 
 # Página que será aberta ao clicar em uma aula
