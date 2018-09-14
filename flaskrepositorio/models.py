@@ -83,7 +83,7 @@ class Topic(db.Model):
         "LessonFile",
         secondary=lesson_file_topic_table,
         back_populates="topics")
-
+    
     def __repr__(self):
         return f"Topic('{self.name}')"
 

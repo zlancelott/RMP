@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<h1>Submeter Arquivos</h1>
+
+	<form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-gruop">
+            <div class="form-group">
+                {{ form.subject_class.label(class="form-control-label") }}
+
+                {% if form.subject_class.errors %}
+                    {{ form.subject_class(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.subject_class.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.subject_class(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.lesson.label(class="form-control-label") }}
+
+                {% if form.lesson.errors %}
+                    {{ form.lesson(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.lesson.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.lesson(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.topics.label(class="form-control-label") }}
+
+                {% if form.topics.errors %}
+                    {{ form.topics(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.topics.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.topics(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.fileUpload.label(class="form-control-label") }}
+
+                {% if form.fileUpload.errors %}
+                    {{ form.image(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.image.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.fileUpload(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+    <script>
+        $("#subject_class").change(function () {
+            $.get( "/topics", {subject_id: $("#subject_class").val()}, function(data) {
+                $('#topics').empty();
+                data.forEach(topic => {
+                    $("#topics").append($('<option/>').text(topic.name).val(topic.id));
+                });
+            });
+            $.get( "/lessons", {subject_class_id: $("#subject_class").val()}, function(data) {
+                $('#lesson').empty();
+                data.forEach(lesson => {
+                    $("#lesson").append($('<option/>').text(lesson.date).val(lesson.id));
+                });
+            });
+        });
+    </script>
+{% endblock %}
