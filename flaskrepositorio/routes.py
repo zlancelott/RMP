@@ -9,6 +9,7 @@ import urllib
 import os
 from flask.json import jsonify
 from werkzeug.utils import secure_filename
+from flaskrepositorio.sync_utils import sync
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -32,6 +33,7 @@ def login():
         user = User.query.filter_by(login=form.matricula.data).first()
 
         if user:
+            sync(form.matricula.data)
             login_user(user)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))

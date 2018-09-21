@@ -26,7 +26,7 @@ class Course(db.Model):
     __tablename__ = 'course'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    code = db.Column(db.String(30), nullable=False)
+    code = db.Column(db.String(30))
     subjects = db.relationship("Subject", back_populates="course")
 
     def __repr__(self):
@@ -37,7 +37,7 @@ class Subject(db.Model):
     __tablename__ = 'subject'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    code = db.Column(db.String(30), nullable=False)
+    code = db.Column(db.String(30))
     course_id = db.Column(db.Integer, db.ForeignKey('course.id'))
     course = db.relationship("Course", back_populates="subjects")
     subject_classes = db.relationship("SubjectClass", back_populates="subject")
@@ -50,8 +50,8 @@ class Subject(db.Model):
 class SubjectClass(db.Model, UserMixin):
     __tablename__ = 'subject_class'
     id = db.Column(db.Integer, primary_key=True)
-    semester = db.Column(db.String(10), nullable=False)
-    code = db.Column(db.String(30), nullable=False)
+    semester = db.Column(db.String(10))
+    code = db.Column(db.String(30))
     subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'))
     subject = db.relationship("Subject", back_populates="subject_classes")
     lessons = db.relationship("Lesson", back_populates="subject_class")
